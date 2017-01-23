@@ -61,6 +61,7 @@
     <Compile Include="src\Frontend1\IVendingMachineFactory.cs" />
     <Compile Include="src\Frontend1\Pop.cs" />
     <Compile Include="src\ScriptProcessor.cs" />
+    <Compile Include="src\VendingMachine.cs" />
     <Compile Include="src\VendingMachineFactory.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -75,7 +76,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>xcopy /y $(ProjectDir)\test-scripts test-scripts\</PreBuildEvent>
+    <PreBuildEvent>xcopy /y "$(ProjectDir)test-scripts" test-scripts\</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

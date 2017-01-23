@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System;
 
 using Frontend1;
+using VendingMachine;
+
 
 namespace seng301_asgn1 {
     /// <summary>
@@ -33,14 +35,16 @@ namespace seng301_asgn1 {
 
         static int counter = 0;
 
-        public VendingMachineFactory() {
-            // TODO: Implement
+        public VendingMachineFactory()
+        {
+            VendingMachine.
         }
 
         public int createVendingMachine(List<int> coinKinds, int selectionButtonCount) {
             // TODO: Implement
 
             Console.WriteLine("Creates new vending machine with coins");
+            Dictionary<int, VendingMachine> vendingMachines = new Dictionary<int, VendingMachine>();
 
             int prevCoin = 0;
             foreach (int coin in coinKinds)
@@ -58,22 +62,6 @@ namespace seng301_asgn1 {
 
                 prevCoin = coin;
             }
-
-            /*for(int i = 0; i < coinKinds.Count; i++)
-            {
-                for(int j = 1; j < coinKinds.Count; j++)
-                {
-                    if(coinKinds[i] == coinKinds[j])
-                    {
-                        Console.WriteLine("There are duplicate coin types");
-                       // i = coinKinds.Count-1;
-                      //  break;
-                    }
-                    Coin a = new Coin(coinKinds[i]);
-                }
-
-                Console.WriteLine(coinKinds[i]);
-            }*/
 
             counter++;
             Console.WriteLine("Instances" +counter);
@@ -128,7 +116,6 @@ namespace seng301_asgn1 {
                 }
             }
 
-            Console.Write("fdf");
         }
 
         public void loadPops(int vmIndex, int popKindIndex, List<Pop> pops) {
