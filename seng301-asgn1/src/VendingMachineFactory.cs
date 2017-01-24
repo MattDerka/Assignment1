@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System;
 
 using Frontend1;
-using VendingMachine;
+
 
 
 namespace seng301_asgn1 {
@@ -37,7 +37,7 @@ namespace seng301_asgn1 {
 
         public VendingMachineFactory()
         {
-            VendingMachine.
+
         }
 
         public int createVendingMachine(List<int> coinKinds, int selectionButtonCount) {
@@ -45,6 +45,14 @@ namespace seng301_asgn1 {
 
             Console.WriteLine("Creates new vending machine with coins");
             Dictionary<int, VendingMachine> vendingMachines = new Dictionary<int, VendingMachine>();
+            vendingMachines.Add(counter, new VendingMachine(coinKinds, selectionButtonCount));
+
+            foreach(var a in vendingMachines)
+            {
+                Console.WriteLine("Displaying dictionary");
+                Console.WriteLine(a);
+                
+            }
 
             int prevCoin = 0;
             foreach (int coin in coinKinds)
