@@ -34,6 +34,8 @@ namespace seng301_asgn1 {
     public class VendingMachineFactory : IVendingMachineFactory {
 
         static int counter = 0;
+        List<VendingMachine> vendingMachines = new List<VendingMachine>();
+
 
         public VendingMachineFactory()
         {
@@ -41,18 +43,8 @@ namespace seng301_asgn1 {
         }
 
         public int createVendingMachine(List<int> coinKinds, int selectionButtonCount) {
-            // TODO: Implement
 
-            Console.WriteLine("Creates new vending machine with coins");
-            Dictionary<int, VendingMachine> vendingMachines = new Dictionary<int, VendingMachine>();
-            vendingMachines.Add(counter, new VendingMachine(coinKinds, selectionButtonCount));
-
-            foreach(var a in vendingMachines)
-            {
-                Console.WriteLine("Displaying dictionary");
-                Console.WriteLine(a);
-                
-            }
+            vendingMachines.Add(new VendingMachine(coinKinds, selectionButtonCount));
 
             int prevCoin = 0;
             foreach (int coin in coinKinds)
@@ -60,70 +52,74 @@ namespace seng301_asgn1 {
 
                 if(coin <= 0)
                 {
-                    Console.WriteLine("One of the coins given is less than or equal to zero");
+                    throw new Exception("One of the coins given is less than or equal to zero");
                 }
 
                 else if(coin == prevCoin)
                 {
-                    Console.WriteLine("There are duplicate coins");
+                    throw new Exception("There are duplicate coins");
                 }
 
                 prevCoin = coin;
             }
 
             counter++;
-            Console.WriteLine("Instances" +counter);
-            Console.WriteLine("And " + selectionButtonCount + " buttons");
             return counter;
         }
 
         public void configureVendingMachine(int vmIndex, List<string> popNames, List<int> popCosts)
         {
-            // TODO: Implement
+            VendingMachine var = vendingMachines[vmIndex];
 
-            Console.WriteLine("Configs the machine by giving the pop names and the cost of each one");
+            var.setPopNames(popNames);
+            var.setPopCosts(popCosts);
 
-            foreach (string pop in popNames)
-            {
-                Console.WriteLine(pop);
-            }
-
-            Console.WriteLine("With respective costs");
             int prevPopCost = 0;
             foreach(int cost in popCosts)
             {
 
                 if(cost <= 0)
                 {
-                    Console.WriteLine("One or more of the pops has a cost less than or equal to zero");
+                    throw new Exception("One or more of the pops has a cost less than or equal to zero");
                 }
 
                 prevPopCost = cost;
-                Console.WriteLine(cost);
             }
 
             if(popNames.Count != popCosts.Count)
             {
-                Console.WriteLine("The number of pop names is different then the number of costs, or vise versa");
+                throw new Exception("The number of pop names is different then the number of costs, or vise versa");
             }
+
         }
 
         public void loadCoins(int vmIndex, int coinKindIndex, List<Coin> coins) {
-            // TODO: Implement
-            Console.WriteLine("Loads starting coins into machine");
 
-            List<List<Coin>> chuteList = new List<List<Coin>>();
+            VendingMachine var = vendingMachines[vmIndex];
 
-            chuteList.Add(new List<Coin>());
+           // Console.WriteLine("Loads starting coins into machine");
 
-            foreach(List<Coin> a in chuteList)
+            ArrayList chutes = new ArrayList();
+
+            //chuteList.Add(new List<Coin>());
+
+            //var.setChute(coins);
+
+            int pre = 0;
+            foreach(var i in coins)
             {
-                foreach(Coin b in coins)
+                if(pre != i.Value)
                 {
-                    Console.Write(b + ",");
+                    List<Coin> temp = new List<Coin>();
+                    temp.Add(i);
+                    var.setChute(temp);
                 }
             }
 
+            for(int i = 0; i < var.getChutes().Count; i++)
+            {
+                Console.WriteLine(var.getChutes[i]);
+            }
         }
 
         public void loadPops(int vmIndex, int popKindIndex, List<Pop> pops) {

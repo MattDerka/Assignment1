@@ -5,3 +5,10 @@ C:\Users\Matthew\Source\Repos\seng301-assignments\seng301-asgn1\seng301-asgn1\bi
 C:\Users\Matthew\Source\Repos\seng301-assignments\seng301-asgn1\seng301-asgn1\obj\Debug\seng301-asgn1.csprojResolveAssemblyReference.cache
 C:\Users\Matthew\Source\Repos\seng301-assignments\seng301-asgn1\seng301-asgn1\obj\Debug\seng301-asgn1.exe
 C:\Users\Matthew\Source\Repos\seng301-assignments\seng301-asgn1\seng301-asgn1\obj\Debug\seng301-asgn1.pdb
+C:\Users\matthew.kanderka\Source\Repos\Assignment1\seng301-asgn1\bin\Debug\seng301-asgn1.exe.config
+C:\Users\matthew.kanderka\Source\Repos\Assignment1\seng301-asgn1\obj\Debug\seng301-asgn1.exe
+C:\Users\matthew.kanderka\Source\Repos\Assignment1\seng301-asgn1\obj\Debug\seng301-asgn1.pdb
+C:\Users\matthew.kanderka\Source\Repos\Assignment1\seng301-asgn1\obj\Debug\seng301-asgn1.csprojResolveAssemblyReference.cache
+C:\Users\matthew.kanderka\Source\Repos\Assignment1\seng301-asgn1\bin\Debug\seng301-asgn1.exe
+C:\Users\matthew.kanderka\Source\Repos\Assignment1\seng301-asgn1\bin\Debug\seng301-asgn1.pdb
+C:\Users\matthew.kanderka\Source\Repos\Assignment1\seng301-asgn1\bin\Debug\grammatica-1.6.dll
