@@ -17,6 +17,7 @@ namespace seng301_asgn1
         private ArrayList allChutes = new ArrayList();
         private ArrayList allChutesPop = new ArrayList();
         private List<int> popCosts = new List<int>();
+        private List<Deliverable> deliveryChute = new List<Deliverable>();
 
 
         public VendingMachine(List<int> coinKinds, int numOfButtons)
@@ -55,11 +56,25 @@ namespace seng301_asgn1
             allChutesPop.Add(a);
         }
 
+        public ArrayList getPopChutes()
+        {
+            return allChutesPop;
+        }
+
         public List<int> getCoinTypes()
         {
             return coinType;
         }
 
+        public void setDeliveryChute(Deliverable item)
+        {
+            deliveryChute.Add(item);
+        }
+
+        public List<Deliverable> getDeliveryChute()
+        {
+            return deliveryChute;
+        }
 
         
 

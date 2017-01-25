@@ -110,37 +110,38 @@ namespace seng301_asgn1 {
 
         public void insertCoin(int vmIndex, Coin coin) {
             // TODO: Implement
-            Console.WriteLine("user enters coins" + coin);
 
             VendingMachine var = vendingMachines[vmIndex];
 
             List<int> temp = var.getCoinTypes();
 
-            foreach(int a in temp)
+            if(!temp.Contains(coin.Value))
             {
-                if(temp.Contains(coin.Value))
-                {
-                    continue;
-                }
-                else
-                {
-                    Console.WriteLine("coin is bad");
-                    throw new Exception("Coin entered is not accepted");
-                }
+                var.setDeliveryChute(coin);
             }
+
         }
-        sd
 
         public void pressButton(int vmIndex, int value)
         {
             // TODO: Implement
-            Console.WriteLine("user presses button" + value);
+            //Console.WriteLine("user presses button" + value);
+
+            VendingMachine var = vendingMachines[vmIndex];
+
+            ArrayList temp = var.getPopChutes();
+            var ta = temp[value];
+            Console.Write(ta);
+            var.setDeliveryChute(ta);
         }
 
         public List<Deliverable> extractFromDeliveryChute(int vmIndex) {
-            // TODO: Implement
-            Console.WriteLine("take out stuff from chute");
-            return new List<Deliverable>();
+
+            VendingMachine var = vendingMachines[vmIndex];
+
+            List<Deliverable> temp = var.getDeliveryChute();
+
+            return temp;
         }
 
         public List<IList> unloadVendingMachine(int vmIndex) {
