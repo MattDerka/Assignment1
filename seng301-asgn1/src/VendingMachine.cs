@@ -1,27 +1,51 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Frontend1;
 
 namespace seng301_asgn1
 {
     class VendingMachine
     {
-        private int num;
+        public int num;
+        private List<int> coinType = new List<int>();
+        private List<string> popNames = new List<string>();
+        private List<Coin> chutes = new List<Coin>();
+        private ArrayList allChutes = new ArrayList();
+        private List<int> popCosts = new List<int>();
+
 
         public VendingMachine(List<int> coinKinds, int numOfButtons)
         {
-            List<int> type = new List<int>();
-            type = coinKinds;
-
-            int num = numOfButtons;
+            coinType = coinKinds;
+            num = numOfButtons;
         }
 
-        public int getNum()
+        public void setPopNames(List<string> popList )
         {
-            return num;
+            popNames = popList;
         }
+
+        public void setPopCosts(List<int> popCost)
+        {
+            popCosts = popCost;
+        }
+
+        public void setChute(List<Coin> coinChute)
+        {
+            allChutes.Add(coinChute);
+        }
+
+        public ArrayList getChutes()
+        {
+            return allChutes;
+        }
+
+
+        
 
         
     }
