@@ -15,6 +15,7 @@ namespace seng301_asgn1
         private List<string> popNames = new List<string>();
         private List<Coin> chutes = new List<Coin>();
         private ArrayList allChutes = new ArrayList();
+        private ArrayList allChutesPop = new ArrayList();
         private List<int> popCosts = new List<int>();
 
 
@@ -42,6 +43,21 @@ namespace seng301_asgn1
         public ArrayList getChutes()
         {
             return allChutes;
+        }
+
+        public void setChutes(List<Coin> d )
+        {
+            allChutes.Add(d);
+        }
+
+        public void setPopChutes(List<Pop> a)
+        {
+            allChutesPop.Add(a);
+        }
+
+        public List<int> getCoinTypes()
+        {
+            return coinType;
         }
 
 

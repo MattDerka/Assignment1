@@ -97,44 +97,37 @@ namespace seng301_asgn1 {
 
             VendingMachine var = vendingMachines[vmIndex];
 
-           // Console.WriteLine("Loads starting coins into machine");
+            var.setChutes(coins);
 
-            ArrayList chutes = new ArrayList();
-
-            //chuteList.Add(new List<Coin>());
-
-            //var.setChute(coins);
-
-            int pre = 0;
-            foreach(var i in coins)
-            {
-                if(pre != i.Value)
-                {
-                    List<Coin> temp = new List<Coin>();
-                    temp.Add(i);
-                    var.setChute(temp);
-                }
-            }
-
-            for(int i = 0; i < var.getChutes().Count; i++)
-            {
-                Console.WriteLine(var.getChutes[i]);
-            }
         }
 
         public void loadPops(int vmIndex, int popKindIndex, List<Pop> pops) {
-            // TODO: Implement
-            Console.WriteLine("load machine with pop");
 
-            foreach (Pop pop in pops)
-            {
-                Console.WriteLine(pop);
-            }
+            VendingMachine var = vendingMachines[vmIndex];
+
+            var.setPopChutes(pops);
         }
 
         public void insertCoin(int vmIndex, Coin coin) {
             // TODO: Implement
             Console.WriteLine("user enters coins" + coin);
+
+            VendingMachine var = vendingMachines[vmIndex];
+
+            List<int> temp = var.getCoinTypes();
+
+            foreach(int a in temp)
+            {
+                if(temp.Contains(coin.Value))
+                {
+                    continue;
+                }
+                else
+                {
+                    Console.WriteLine("coin is bad");
+                    throw new Exception("Coin entered is not accepted");
+                }
+            }
         }
 
         public void pressButton(int vmIndex, int value)
