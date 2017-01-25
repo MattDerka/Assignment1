@@ -97,14 +97,6 @@ namespace seng301_asgn1 {
 
             VendingMachine var = vendingMachines[vmIndex];
 
-           // Console.WriteLine("Loads starting coins into machine");
-
-            ArrayList chutes = new ArrayList();
-
-            //chuteList.Add(new List<Coin>());
-
-            //var.setChute(coins);
-
             int pre = 0;
             foreach(var i in coins)
             {
@@ -113,13 +105,18 @@ namespace seng301_asgn1 {
                     List<Coin> temp = new List<Coin>();
                     temp.Add(i);
                     var.setChute(temp);
+
+                    pre = i.Value;
+                }
+
+                else if(pre == i.Value)
+                {
+
                 }
             }
 
-            for(int i = 0; i < var.getChutes().Count; i++)
-            {
-                Console.WriteLine(var.getChutes[i]);
-            }
+
+
         }
 
         public void loadPops(int vmIndex, int popKindIndex, List<Pop> pops) {
