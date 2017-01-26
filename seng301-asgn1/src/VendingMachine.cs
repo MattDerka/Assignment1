@@ -19,6 +19,7 @@ namespace seng301_asgn1
         private List<int> popCosts = new List<int>();
         private List<Deliverable> deliveryChute = new List<Deliverable>();
         private List<Coin> moneyMade = new List<Coin>();
+        private List<Coin> limbo = new List<Coin>();
 
 
         public VendingMachine(List<int> coinKinds, int numOfButtons)
@@ -92,6 +93,15 @@ namespace seng301_asgn1
             return moneyMade;
         }
 
+        public void setLimbo(Coin i)
+        {
+            limbo.Add(i);
+        }
+
+        public List<Coin> getLimbo()
+        {
+            return limbo;
+        }
         
     }
 }

@@ -121,10 +121,9 @@ namespace seng301_asgn1 {
             }
             else
             {
-                var.setMoneyMade(coin);
+                var.setLimbo(coin);
             }
 
-            var.getMoneyMade();
         }
 
         public void pressButton(int vmIndex, int value)
@@ -135,26 +134,42 @@ namespace seng301_asgn1 {
             List<Pop> foo = new List<Pop>();
             List<Coin> boo = var.getMoneyMade();
             List<int> too = var.getPopCosts();
+            List<Coin> limbo = var.getLimbo();
+            ArrayList coinChutes = var.getChutes();
+
+
+            Console.WriteLine("limbo at pres");
 
             int cost = too[value];
             int total = 0;
             int change = 0;
 
-            foreach(var a in boo)
+            foreach (Coin a in limbo)
             {
                 total += a.Value;
             }
 
             change = total - cost;
-            //Console.WriteLine(total);
+            Console.WriteLine(total);
 
             foo = (List<Pop>)temp[value];
 
-            if(boo.Count != 0 && total >= cost)
+            if(limbo.Count != 0 && total >= cost)
             {
-
                 Pop pop = foo[0];
                 foo[0] = null;
+                
+                foreach(var a in limbo)
+                {
+                    boo.Add(a);
+                }
+
+                limbo.Clear();
+                Console.WriteLine("money made");
+                var.getMoneyMade().ForEach(Console.WriteLine);
+
+
+
                 var.setDeliveryChute(pop);
             }
 
