@@ -119,20 +119,47 @@ namespace seng301_asgn1 {
             {
                 var.setDeliveryChute(coin);
             }
+            else
+            {
+                var.setMoneyMade(coin);
+            }
 
+            var.getMoneyMade();
         }
 
         public void pressButton(int vmIndex, int value)
         {
-            // TODO: Implement
-            //Console.WriteLine("user presses button" + value);
 
             VendingMachine var = vendingMachines[vmIndex];
-
             ArrayList temp = var.getPopChutes();
-            var ta = temp[value];
-            Console.Write(ta);
-            var.setDeliveryChute(ta);
+            List<Pop> foo = new List<Pop>();
+            List<Coin> boo = var.getMoneyMade();
+            List<int> too = var.getPopCosts();
+
+            int cost = too[value];
+            int total = 0;
+            int change = 0;
+
+            foreach(var a in boo)
+            {
+                total += a.Value;
+            }
+
+            change = total - cost;
+            //Console.WriteLine(total);
+
+            foo = (List<Pop>)temp[value];
+
+            if(boo.Count != 0 && total >= cost)
+            {
+
+                Pop pop = foo[0];
+                foo[0] = null;
+                var.setDeliveryChute(pop);
+            }
+
+
+
         }
 
         public List<Deliverable> extractFromDeliveryChute(int vmIndex) {
