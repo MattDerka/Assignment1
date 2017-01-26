@@ -97,7 +97,9 @@ namespace seng301_asgn1 {
 
             VendingMachine var = vendingMachines[vmIndex];
 
-            var.setChutes(coins);
+            var.setCoinChutes(coinKindIndex, coins);
+
+            //var.setChutes(coins);
 
         }
 
@@ -105,11 +107,11 @@ namespace seng301_asgn1 {
 
             VendingMachine var = vendingMachines[vmIndex];
 
-            var.setPopChutes(pops);
+            var.setPopChutes(popKindIndex, pops);
+           // var.setPopChutes(pops);
         }
 
         public void insertCoin(int vmIndex, Coin coin) {
-            // TODO: Implement
 
             VendingMachine var = vendingMachines[vmIndex];
 
@@ -130,13 +132,13 @@ namespace seng301_asgn1 {
         {
 
             VendingMachine var = vendingMachines[vmIndex];
-            ArrayList temp = var.getPopChutes();
+            Dictionary<int, List<Pop>> popChutes = var.getPopChutes();
+            Dictionary<int, List<Coin>> coinChutes = var.getCoinChutes();
             List<Pop> foo = new List<Pop>();
             List<Coin> coins = new List<Coin>();
             List<Coin> boo = var.getMoneyMade();
             List<int> too = var.getPopCosts();
             List<Coin> limbo = var.getLimbo();
-            ArrayList coinChutes = var.getChutes();
 
 
             Console.WriteLine("limbo at pres");
@@ -144,6 +146,7 @@ namespace seng301_asgn1 {
             int cost = too[value];
             int total = 0;
             int change = 0;
+
 
             foreach (Coin a in limbo)
             {
@@ -153,39 +156,43 @@ namespace seng301_asgn1 {
             change = total - cost;
             Console.WriteLine(total);
 
-            foo = (List<Pop>)temp[value];
+            popChutes.TryGetValue(value, out foo);
+            //Console.WriteLine("pop chute");
+            //foo.ForEach(Console.WriteLine);
 
             if(limbo.Count != 0 && total >= cost)
             {
                 Pop pop = foo[0];
-                foo[0] = null;
-                
-                foreach(var a in limbo)
+                foo.Remove(pop);
+
+                var.setDeliveryChute(pop);
+
+                foreach (Coin a in limbo)
                 {
-                    boo.Add(a);
+                    var.setMoneyMade(a);
                 }
-
                 limbo.Clear();
-                Console.WriteLine("money made");
-                var.getMoneyMade().ForEach(Console.WriteLine);
 
-                coins = (List<Coin>)coinChutes[2];
-                Coin coin = coins[0];
 
-                while(change % coin.Value == 0 && change != 0)
+                for(int i= coinChutes.Count-1; i >= 0; i--)
                 {
-                    Console.WriteLine(coin.Value);
-                    var.setDeliveryChute(coin);
-                    change -= coin.Value;
-                    if(change == 0)
+                    coinChutes.TryGetValue(i, out coins);
+                    Coin coin = coins[0];
+                    while (change % coin.Value == 0 && change != 0)
                     {
-                        break;
+
+                            var.setDeliveryChute(coin);
+                            change -= coin.Value;
+                        
+
                     }
                 }
 
-                var.setDeliveryChute(pop);
-            }
 
+                Console.WriteLine("money made");
+                var.getMoneyMade().ForEach(Console.WriteLine);
+
+            }
 
 
         }
@@ -196,15 +203,25 @@ namespace seng301_asgn1 {
 
             List<Deliverable> temp = var.getDeliveryChute();
 
+            Console.WriteLine("deil chute");
+            temp.ForEach(Console.WriteLine);
+
             return temp;
         }
 
         public List<IList> unloadVendingMachine(int vmIndex) {
-            // TODO: Implement
-            Console.WriteLine("Open vending machine and remove all items");
+
+            VendingMachine var = vendingMachines[vmIndex];
+            List<Coin> moneyMade = var.getMoneyMade();
+            List<Coin> moneyChange = new List<Coin>();
+
+          //  moneyMade.ForEach(Console.WriteLine);
+
+
+
             return new List<IList>() {
                 new List<Coin>(),
-                new List<Coin>(),
+                moneyMade,
                 new List<Pop>() };
             }
     }

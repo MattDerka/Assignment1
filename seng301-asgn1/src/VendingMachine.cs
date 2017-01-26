@@ -14,7 +14,9 @@ namespace seng301_asgn1
         private List<int> coinType = new List<int>();
         private List<string> popNames = new List<string>();
         private List<Coin> chutes = new List<Coin>();
-        private ArrayList allChutes = new ArrayList();
+        //private ArrayList allChutes = new ArrayList();
+        private Dictionary<int , List<Coin>> coinChutes = new Dictionary<int, List<Coin>>();
+        private Dictionary<int, List<Pop>> popChutes = new Dictionary<int, List<Pop>>();
         private ArrayList allChutesPop = new ArrayList();
         private List<int> popCosts = new List<int>();
         private List<Deliverable> deliveryChute = new List<Deliverable>();
@@ -26,6 +28,26 @@ namespace seng301_asgn1
         {
             coinType = coinKinds;
             num = numOfButtons;
+        }
+
+        public void setCoinChutes(int index, List<Coin> coin)
+        {
+            coinChutes.Add(index, coin);
+        }
+
+        public Dictionary<int, List<Coin>> getCoinChutes()
+        {
+            return coinChutes;
+        }
+
+        public void setPopChutes(int index, List<Pop> pop)
+        {
+            popChutes.Add(index, pop);
+        }
+
+        public Dictionary<int, List<Pop>> getPopChutes()
+        {
+            return popChutes;
         }
 
         public void setPopNames(List<string> popList )
@@ -43,30 +65,32 @@ namespace seng301_asgn1
             return popCosts;
         }
 
-        public void setChute(List<Coin> coinChute)
+        /*public void setChute(List<Coin> coinChute)
         {
             allChutes.Add(coinChute);
-        }
+        }*/
 
-        public ArrayList getChutes()
+        /*public ArrayList getChutes()
         {
             return allChutes;
-        }
+        }*/
 
-        public void setChutes(List<Coin> d )
+        /*public void setChutes(List<Coin> d )
         {
             allChutes.Add(d);
-        }
+        }*/
 
         public void setPopChutes(List<Pop> a)
         {
             allChutesPop.Add(a);
         }
 
-        public ArrayList getPopChutes()
+        /*public ArrayList getPopChutes()
         {
             return allChutesPop;
-        }
+        }*/
+
+
 
         public List<int> getCoinTypes()
         {
