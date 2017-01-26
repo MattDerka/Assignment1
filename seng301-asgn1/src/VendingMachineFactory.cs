@@ -132,6 +132,7 @@ namespace seng301_asgn1 {
             VendingMachine var = vendingMachines[vmIndex];
             ArrayList temp = var.getPopChutes();
             List<Pop> foo = new List<Pop>();
+            List<Coin> coins = new List<Coin>();
             List<Coin> boo = var.getMoneyMade();
             List<int> too = var.getPopCosts();
             List<Coin> limbo = var.getLimbo();
@@ -168,7 +169,19 @@ namespace seng301_asgn1 {
                 Console.WriteLine("money made");
                 var.getMoneyMade().ForEach(Console.WriteLine);
 
+                coins = (List<Coin>)coinChutes[2];
+                Coin coin = coins[0];
 
+                while(change % coin.Value == 0 && change != 0)
+                {
+                    Console.WriteLine(coin.Value);
+                    var.setDeliveryChute(coin);
+                    change -= coin.Value;
+                    if(change == 0)
+                    {
+                        break;
+                    }
+                }
 
                 var.setDeliveryChute(pop);
             }
