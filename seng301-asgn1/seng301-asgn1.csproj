@@ -72,6 +72,7 @@
     <None Include="test-scripts\U01-bad-script1" />
     <None Include="test-scripts\U02-bad-script2" />
     <None Include="test-scripts\U02-bad-script3" />
+    <None Include="test-scripts\U02-bad-custom" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="test-scripts\README.txt" />
