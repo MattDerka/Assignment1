@@ -174,24 +174,37 @@ namespace seng301_asgn1 {
                 limbo.Clear();
 
 
-                for(int i= coinChutes.Count-1; i >= 0; i--)
+                int maxIndex = 0;
+                int maxCoin = 0;
+                for (int i = 0; i < coinChutes.Count; i++)
                 {
                     coinChutes.TryGetValue(i, out coins);
                     Coin coin = coins[0];
-                    while (change % coin.Value == 0 && change != 0)
+                    if(coin.Value > maxCoin)
                     {
-
-                            var.setDeliveryChute(coin);
-                            change -= coin.Value;
-                        
-
+                        maxIndex = i;
+                        maxCoin = coin.Value;
                     }
+
+                    Console.WriteLine(maxIndex);
                 }
 
 
-                Console.WriteLine("money made");
-                var.getMoneyMade().ForEach(Console.WriteLine);
+                coinChutes.TryGetValue(maxIndex, out coins);
+                Coin coin1 = coins[0];
+                while (change % coin1.Value == 0 && change != 0)
+                {
+                    var.setDeliveryChute(coin1);
+                    coinChutes[maxIndex].RemoveAt(0);
+                    change -= coin1.Value;
+                 }
 
+                Console.WriteLine("removeing 25 cent coin from chute");
+                coinChutes[2].ForEach(Console.WriteLine);
+
+                /*Console.WriteLine("money made");
+                var.getMoneyMade().ForEach(Console.WriteLine);
+                */
             }
 
 
