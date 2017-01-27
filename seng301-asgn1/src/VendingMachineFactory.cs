@@ -99,7 +99,6 @@ namespace seng301_asgn1 {
 
             var.setCoinChutes(coinKindIndex, coins);
 
-            //var.setChutes(coins);
 
         }
 
@@ -108,7 +107,6 @@ namespace seng301_asgn1 {
             VendingMachine var = vendingMachines[vmIndex];
 
             var.setPopChutes(popKindIndex, pops);
-           // var.setPopChutes(pops);
         }
 
         public void insertCoin(int vmIndex, Coin coin) {
@@ -140,8 +138,11 @@ namespace seng301_asgn1 {
             List<int> too = var.getPopCosts();
             List<Coin> limbo = var.getLimbo();
 
+            List<Pop> finalPop = new List<Pop>();
+            List<Pop> temp = new List<Pop>();
+            List<Coin> temp2 = new List<Coin>();
 
-            Console.WriteLine("limbo at pres");
+
 
             int cost = too[value];
             int total = 0;
@@ -154,57 +155,67 @@ namespace seng301_asgn1 {
             }
 
             change = total - cost;
-            Console.WriteLine(total);
+
 
             popChutes.TryGetValue(value, out foo);
-            //Console.WriteLine("pop chute");
-            //foo.ForEach(Console.WriteLine);
+
 
             if(limbo.Count != 0 && total >= cost)
             {
                 Pop pop = foo[0];
-                foo.Remove(pop);
 
                 var.setDeliveryChute(pop);
+                popChutes[value].RemoveAt(0);
+
+                for (int i = 0; i < popChutes.Count; i++)
+                {
+                    popChutes.TryGetValue(i, out temp);
+                    if (temp.Count == 0)
+                    {
+                        continue;
+                    }
+                    for(int j = 0; j < temp.Count; j++)
+                    {
+                        Pop pop2 = temp[0];
+                        var.setFinalPop(pop2);
+                    }
+
+                }
 
                 foreach (Coin a in limbo)
                 {
                     var.setMoneyMade(a);
                 }
                 limbo.Clear();
-
-
-                int maxIndex = 0;
-                int maxCoin = 0;
-                for (int i = 0; i < coinChutes.Count; i++)
+                
+                for(int i = coinChutes.Count-1; i >= 0 ; i--)
                 {
                     coinChutes.TryGetValue(i, out coins);
-                    Coin coin = coins[0];
-                    if(coin.Value > maxCoin)
+                    Coin coin1 = coins[0];
+                    while (change % coin1.Value == 0 && change != 0)
                     {
-                        maxIndex = i;
-                        maxCoin = coin.Value;
+                        var.setDeliveryChute(coin1);
+                        coinChutes[i].RemoveAt(0);
+                        change -= coin1.Value;
+                    }
+                }
+               
+
+                for (int i = 0; i < coinChutes.Count; i++)
+                {
+                    coinChutes.TryGetValue(i, out temp2);
+                    if (temp2.Count == 0)
+                    {
+                        continue;
+                    }
+                    for(int j = 0; j < temp2.Count; j ++)
+                    {
+                        Coin coin = temp2[j];
+                        var.setFinalCoin(coin);
                     }
 
-                    Console.WriteLine(maxIndex);
                 }
 
-
-                coinChutes.TryGetValue(maxIndex, out coins);
-                Coin coin1 = coins[0];
-                while (change % coin1.Value == 0 && change != 0)
-                {
-                    var.setDeliveryChute(coin1);
-                    coinChutes[maxIndex].RemoveAt(0);
-                    change -= coin1.Value;
-                 }
-
-                Console.WriteLine("removeing 25 cent coin from chute");
-                coinChutes[2].ForEach(Console.WriteLine);
-
-                /*Console.WriteLine("money made");
-                var.getMoneyMade().ForEach(Console.WriteLine);
-                */
             }
 
 
@@ -216,26 +227,16 @@ namespace seng301_asgn1 {
 
             List<Deliverable> temp = var.getDeliveryChute();
 
-            Console.WriteLine("deil chute");
-            temp.ForEach(Console.WriteLine);
-
             return temp;
         }
 
         public List<IList> unloadVendingMachine(int vmIndex) {
 
-            VendingMachine var = vendingMachines[vmIndex];
-            List<Coin> moneyMade = var.getMoneyMade();
-            List<Coin> moneyChange = new List<Coin>();
-
-          //  moneyMade.ForEach(Console.WriteLine);
-
-
 
             return new List<IList>() {
-                new List<Coin>(),
-                moneyMade,
-                new List<Pop>() };
+                vendingMachines[vmIndex].getFinalCoin(),
+                vendingMachines[vmIndex].getMoneyMade(),
+                vendingMachines[vmIndex].getFinalPop() };
             }
     }
 }

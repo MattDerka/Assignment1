@@ -23,6 +23,9 @@ namespace seng301_asgn1
         private List<Coin> moneyMade = new List<Coin>();
         private List<Coin> limbo = new List<Coin>();
 
+        private List<Pop> finalPop = new List<Pop>();
+        private List<Coin> finalCoin = new List<Coin>();
+
 
         public VendingMachine(List<int> coinKinds, int numOfButtons)
         {
@@ -125,6 +128,26 @@ namespace seng301_asgn1
         public List<Coin> getLimbo()
         {
             return limbo;
+        }
+
+        public void setFinalCoin(Coin i)
+        {
+            finalCoin.Add(i);
+        }
+
+        public List<Coin> getFinalCoin()
+        {
+            return finalCoin;
+        }
+
+        public void setFinalPop(Pop i)
+        {
+            finalPop.Add(i);
+        }
+
+        public List<Pop> getFinalPop()
+        {
+            return finalPop;
         }
         
     }
